@@ -1,0 +1,30 @@
+{
+  "name": "bjtu-self-service-web",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --test tests/campus-regressions.test.mjs tests/academic-calendar.test.mjs"
+  },
+  "dependencies": {
+    "next": "^15.4.0",
+    "onnxruntime-web": "^1.22.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^22.19.19",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  },
+  "type": "module"
+}

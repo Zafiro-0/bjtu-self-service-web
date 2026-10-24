@@ -1,0 +1,22 @@
+NOTICE
+======
+
+This project (BJTU Self-Service Web / 交大自由行) is a derivative work of
+the open-source Android application "BJTUselfService".
+
+Upstream project: BJTUselfService
+Upstream license: MIT License
+Upstream copyright: Copyright (c) 2024 BJTUselfService
+Upstream license text: see THIRD-PARTY-LICENSES.txt
+
+The upstream MIT license and attribution are preserved in this repository as
+required by the MIT License.
+
+Third-party assets:
+- The captcha recognition model (public/captcha-model.onnx) originates from the
+  upstream project and is included for interoperability and testing purposes.
+- "知行" and any university marks/emblems belong to Beijing Jiaotong University
+  and are not licensed by this project.
+
+This is an unofficial, non-commercial project. It is not affiliated with,
+endorsed by, or sponsored by Beijing Jiaotong University.
