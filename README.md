@@ -21,7 +21,7 @@ This app puts all of it in one place:
 - **Find a seat, fast.** Classroom availability by building, week, weekday and period, with real-time headcount — check before walking across campus.
 - **Never miss a deadline.** Pending homework across every course, sorted by remaining time.
 - **Know when plans change.** Exam schedule with automatic change detection.
-- **Private by design.** Credentials are encrypted on the device and never sent to a server; there is no database to leak.
+- **Private by design.** Credentials are encrypted on the device; the server keeps no database, no logs and no user records to leak.
 - **Feels native.** Installs from the browser to the iPhone/Android home screen, with offline shell caching.
 
 Built by a BJTU student, for BJTU students.
@@ -55,11 +55,23 @@ All features are **read-only**: the app never submits grades, enrolments or any 
 | Concern | Design |
 | --- | --- |
 | Server-side storage | **None.** No database, no KV store, no user table. |
-| Password | Encrypted with a **device-unique, non-exportable AES-GCM key** and stored only in the browser's IndexedDB. Plaintext never reaches the server. |
+| Password | Encrypted with a **device-unique, non-exportable AES-GCM key** and stored only in the browser's IndexedDB. It crosses the wire only inside the HTTPS login request needed to authenticate with the university's CAS — never written to a database, log or analytics system. |
 | Campus session | AES-GCM encrypted with a server secret (`SESSION_SECRET`) and kept in an **HttpOnly cookie** on the user's device. |
 | Captcha | Solved locally in the browser with an **ONNX** model; the image is returned as a data URL and never persisted server-side. |
 | Abuse protection | In-memory rate limits (login failures, per-session API calls). |
 | Transport hardening | Strict CSP, `X-Frame-Options: DENY`, `Referrer-Policy`, `nosniff`, scoped `Permissions-Policy`. |
+
+### Where your data lives
+
+| Data | Storage | Who can read it |
+| --- | --- | --- |
+| Student ID + password | AES-GCM ciphertext in the browser's IndexedDB, encrypted with a non-exportable device key | Only that browser profile on that device |
+| Campus session cookies | AES-GCM ciphertext in an HttpOnly cookie | Only the server holding `SESSION_SECRET`; page JavaScript cannot read it |
+| Grades, timetable, homework, exams | Rendered in memory, never persisted | The user only |
+| Classroom headcount | Building name sent to a third-party headcount service | That service sees a building name — no account, no cookie, no identifier |
+| Server | **Nothing** — no database, no cache, no user records | — |
+
+Session cookies expire after **30 days**; clearing site data or tapping logout deletes the encrypted credentials and the session from the device.
 
 > The threat model and the rationale behind every choice are documented in [`项目总结.md`](./项目总结.md) (Chinese).
 

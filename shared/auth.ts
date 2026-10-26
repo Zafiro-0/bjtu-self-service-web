@@ -1,4 +1,5 @@
-export const SESSION_MAX_AGE_SECONDS = 400 * 24 * 60 * 60;
+// 30 days — bounded enough to limit exposure if a device is lost, long enough to avoid constant re-login.
+export const SESSION_MAX_AGE_SECONDS = 30 * 24 * 60 * 60;
 export const SESSION_TTL_MS = SESSION_MAX_AGE_SECONDS * 1000;
 export const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 export const LOGIN_FAILURE_LIMIT = 5;

@@ -29,9 +29,16 @@ This project is a **client-side PWA plus a stateless proxy** for a university's 
 - Rate-limit thresholds, or denial-of-service through intentional abuse,
 - The captcha model's recognition accuracy.
 
+## Third-party services
+
+- **`mis.bjtu.edu.cn` / `bksy.bjtu.edu.cn`** — the university's own campus systems, reached over HTTPS.
+- **`yaya.csoci.com:2333`** — a headcount service used for the classroom occupancy view. The request contains **only a building name** (no account, cookie or identifier) and is sent over plain HTTP because the service does not offer TLS. If the service is unreachable, occupancy still works — only the headcount column stays empty.
+- **No analytics, advertising or tracking SDKs** are used anywhere in the project.
+
 ## Design commitments
 
 - The server never persists user data.
 - Passwords are encrypted with a device-unique, non-exportable AES-GCM key and stay in the browser.
-- Campus session cookies are AES-GCM encrypted into an HttpOnly cookie.
+- The plaintext password is used only inside the HTTPS login request to the university's CAS; it is never written to storage, logs or analytics.
+- Campus session cookies are AES-GCM encrypted into an HttpOnly cookie and expire after 30 days.
 - Plaintext credentials must never appear in logs, error messages or analytics.
