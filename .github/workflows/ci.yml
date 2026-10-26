@@ -31,3 +31,6 @@ jobs:
 
       - name: Type-check
         run: npx tsc --noEmit --incremental false
+
+      - name: Production build
+        run: npm run build

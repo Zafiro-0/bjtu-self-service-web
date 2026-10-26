@@ -10,6 +10,7 @@
 
 - [ ] `npm test` passes
 - [ ] `npx tsc --noEmit` is clean
+- [ ] `npm run build` passes
 - [ ] No user data is stored server-side
 - [ ] No credentials, secrets or `.env` files are included
 
