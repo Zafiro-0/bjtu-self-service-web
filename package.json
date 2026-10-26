@@ -31,7 +31,7 @@
     "test": "node --test tests/campus-regressions.test.mjs tests/academic-calendar.test.mjs"
   },
   "dependencies": {
-    "next": "^15.4.0",
+    "next": "^15.5.28",
     "onnxruntime-web": "^1.22.0",
     "react": "19.2.8",
     "react-dom": "19.2.8"
