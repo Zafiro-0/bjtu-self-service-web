@@ -2,6 +2,25 @@
   "name": "bjtu-self-service-web",
   "version": "0.1.0",
   "private": true,
+  "description": "Privacy-first, stateless PWA for BJTU students: grades, timetable, classroom availability, homework and exams.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zafiro-0/bjtu-self-service-web.git"
+  },
+  "homepage": "https://bjtu-self-service-web.vercel.app",
+  "bugs": {
+    "url": "https://github.com/Zafiro-0/bjtu-self-service-web/issues"
+  },
+  "keywords": [
+    "bjtu",
+    "campus",
+    "pwa",
+    "nextjs",
+    "typescript",
+    "privacy",
+    "stateless"
+  ],
   "engines": {
     "node": ">=20"
   },
