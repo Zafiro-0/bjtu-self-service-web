@@ -14,10 +14,11 @@ Thanks for your interest. This project is a small, deliberately simple codebase;
 npm install
 npm test                    # must pass
 npx tsc --noEmit            # must be clean
+npm run build               # must compile without campus credentials
 npm run dev
 ```
 
-CI runs the same two checks (`npm test` and `npx tsc --noEmit`) on every push and pull request to `main`.
+Use a current Node.js 22 installation (`.nvmrc`). Prefer `npm ci` when reproducing the lockfile. CI runs tests, type checking and a production build on pushes and pull requests to `main`. These checks do not authenticate to university services; see [maintenance status](docs/maintenance.md) for live acceptance work.
 
 ## Pull requests
 

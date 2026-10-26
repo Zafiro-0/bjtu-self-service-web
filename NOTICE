@@ -15,8 +15,14 @@ required by the MIT License.
 Third-party assets:
 - The captcha recognition model (public/captcha-model.onnx) originates from the
   upstream project and is included for interoperability and testing purposes.
+  Conversion to ONNX does not establish a separate asset licence. The precise
+  redistribution terms for the bundled model have not been independently verified.
 - "知行" and any university marks/emblems belong to Beijing Jiaotong University
   and are not licensed by this project.
+
+Web adaptation maintained by Zafiro-0 with assistance from OpenAI Codex and
+WorkBuddy. The public Git history begins with an imported release and does not
+contain all earlier private development history.
 
 This is an unofficial, non-commercial project. It is not affiliated with,
 endorsed by, or sponsored by Beijing Jiaotong University.

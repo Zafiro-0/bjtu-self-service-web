@@ -5,6 +5,11 @@ Format loosely follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Documentation and maintenance
+- Disclose the current campus-authentication failure and distinguish implemented adapters from live acceptance.
+- Correct timetable, data-flow, logging, session-lifetime and authorship descriptions.
+- Add an evidence-based maintenance roadmap and include a production build in CI.
+
 ## [2026-10-24]
 
 ### Added
