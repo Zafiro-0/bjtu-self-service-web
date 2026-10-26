@@ -3,6 +3,7 @@
 A privacy-first, **stateless** Progressive Web App for Beijing Jiaotong University (BJTU) students. It unifies **grades, timetable, classroom availability, homework and exam schedules** in one installable web app — with **zero user data stored on the server**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/Zafiro-0/bjtu-self-service-web/actions/workflows/ci.yml/badge.svg)](https://github.com/Zafiro-0/bjtu-self-service-web/actions/workflows/ci.yml)
 ![Next.js](https://img.shields.io/badge/Next.js-15-black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6)
 ![PWA](https://img.shields.io/badge/PWA-installable-5A0FC8)
@@ -124,7 +125,7 @@ The suite covers captcha-expression evaluation, grade-term mapping, timetable pa
 
 ## Contributing
 
-Issues and pull requests are welcome — see [`CONTRIBUTING.md`](./CONTRIBUTING.md). For security reports, please follow [`SECURITY.md`](./SECURITY.md).
+Issues and pull requests are welcome — see [`CONTRIBUTING.md`](./CONTRIBUTING.md). By participating, you agree to the [`CODE_OF_CONDUCT.md`](./CODE_OF_CONDUCT.md). For security reports, please follow [`SECURITY.md`](./SECURITY.md).
 
 ## License & attribution
 

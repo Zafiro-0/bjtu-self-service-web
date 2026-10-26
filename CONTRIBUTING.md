@@ -17,6 +17,8 @@ npx tsc --noEmit            # must be clean
 npm run dev
 ```
 
+CI runs the same two checks (`npm test` and `npx tsc --noEmit`) on every push and pull request to `main`.
+
 ## Pull requests
 
 - Keep changes focused; one concern per PR.
