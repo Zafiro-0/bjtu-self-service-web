@@ -10,9 +10,24 @@ A privacy-first, **stateless** Progressive Web App for Beijing Jiaotong Universi
 
 ---
 
-## Why this project exists
+## Why it matters for BJTU students
 
-University campus systems are usually fragmented across several portals (MIS, CAS, the academic-affairs system, a course platform) and are designed for desktop browsers. Most unofficial clients solve this by running a conventional backend that **stores credentials and session cookies** — which turns a convenience tool into a high-value target.
+A BJTU undergraduate's academic life is scattered across several desktop-oriented portals — MIS, the academic-affairs system, a course platform, and a separate classroom-occupancy page. Answering a simple question like *"what's due this week?"* or *"is there a free classroom to study in?"* means logging into several systems, on a phone.
+
+This app puts all of it in one place:
+
+- **One login, five answers.** Grades, timetable, free classrooms, pending homework and exam dates in a single installable home-screen app.
+- **Find a seat, fast.** Classroom availability by building, week, weekday and period, with real-time headcount — check before walking across campus.
+- **Never miss a deadline.** Pending homework across every course, sorted by remaining time.
+- **Know when plans change.** Exam schedule with automatic change detection.
+- **Private by design.** Credentials are encrypted on the device and never sent to a server; there is no database to leak.
+- **Feels native.** Installs from the browser to the iPhone/Android home screen, with offline shell caching.
+
+Built by a BJTU student, for BJTU students.
+
+## Design rationale
+
+University campus systems are usually fragmented across several portals and are designed for desktop browsers. Most unofficial clients solve this by running a conventional backend that **stores credentials and session cookies** — which turns a convenience tool into a high-value target.
 
 This project explores the opposite design:
 
@@ -96,7 +111,7 @@ npm run dev        # http://localhost:3000
 npm run build
 ```
 
-> The app talks to campus endpoints, so it only works on networks that can reach the university's systems.
+> The app is designed for BJTU students and connects to the university's campus systems.
 
 ## Testing
 
@@ -121,6 +136,12 @@ Developed end-to-end with **OpenAI Codex** as the coding agent.
 
 ## 中文简介
 
-「交大自由行」是给北京交通大学学生用的校园信息网页应用（PWA），把**成绩、课表、空闲教室、作业、考试**五项只读信息整合到一个可安装到手机桌面的网页里。
+「交大自由行」是给北京交通大学学生做的校园信息网页应用（PWA）。北交大的成绩、课表、空闲教室、作业、考试分散在多个电脑端门户里，手机上查一次要反复登录；这个应用把它们收进一个可安装到手机桌面的网页——**一次登录，五项信息一目了然**：
+
+- **查成绩**：按学期查看总加权与绩点
+- **看课表**：当前/历史学期、教学周、单双周
+- **找自习室**：按教学楼/周次/时段查空闲教室和实时人数
+- **赶作业**：所有课程未交作业按剩余时间排序
+- **备考**：考试时间地点 + 变更提醒
 
 它最大的特点是**服务端无状态、零用户数据**：密码用设备唯一密钥加密后只存在本机浏览器，登录态加密存 HttpOnly Cookie，服务器不落库、不记录、不持久化任何用户数据。因此它既轻量（首屏约 112 KB JS），也把「数据托管风险」降到了最低。

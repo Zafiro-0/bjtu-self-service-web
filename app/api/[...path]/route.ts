@@ -242,7 +242,7 @@ type HomeworkItem = {
 async function bksyJson<T>(session: Session, url: string) {
   const result = await follow(session, url, { headers: {
     accept: "application/json, text/javascript, */*; q=0.01",
-    referer: "http://123.121.147.7:88",
+    referer: "https://mis.bjtu.edu.cn",
     "x-requested-with": "XMLHttpRequest",
     ...(session.bksySessionId ? { sessionid: session.bksySessionId } : {}),
   } });
@@ -251,7 +251,7 @@ async function bksyJson<T>(session: Session, url: string) {
 }
 async function ensureBksy(session: Session) {
   await follow(session, "https://mis.bjtu.edu.cn/module/module/28/");
-  const message = await bksyJson<{ sessionId?: string }>(session, "http://123.121.147.7:88/ve/back/coursePlatform/message.shtml?method=getArticleList");
+  const message = await bksyJson<{ sessionId?: string }>(session, "https://mis.bjtu.edu.cn/ve/back/coursePlatform/message.shtml?method=getArticleList");
   if (!message.sessionId) throw new CampusReauthError();
   session.bksySessionId = message.sessionId;
 }
@@ -269,10 +269,10 @@ async function mapLimited<T, R>(items: T[], limit: number, mapper: (item: T) => 
 }
 async function homeworkCatalog(session: Session) {
   await ensureBksy(session);
-  const semester = await bksyJson<{ result?: Array<{ xqCode?: string }> }>(session, "http://123.121.147.7:88/ve/back/rp/common/teachCalendar.shtml?method=queryCurrentXq");
+  const semester = await bksyJson<{ result?: Array<{ xqCode?: string }> }>(session, "https://mis.bjtu.edu.cn/ve/back/rp/common/teachCalendar.shtml?method=queryCurrentXq");
   const xqCode = semester.result?.find(item => item.xqCode)?.xqCode;
   if (!xqCode) throw new Error("课程平台未返回当前学期。");
-  const courses = await bksyJson<{ courseList?: BksyCourse[] }>(session, `http://123.121.147.7:88/ve/back/coursePlatform/course.shtml?method=getCourseList&pagesize=100&page=1&xqCode=${encodeURIComponent(xqCode)}`);
+  const courses = await bksyJson<{ courseList?: BksyCourse[] }>(session, `https://mis.bjtu.edu.cn/ve/back/coursePlatform/course.shtml?method=getCourseList&pagesize=100&page=1&xqCode=${encodeURIComponent(xqCode)}`);
   return { xqCode, courses: courses.courseList || [] };
 }
 async function homework(session: Session, cursor: number) {
@@ -280,7 +280,7 @@ async function homework(session: Session, cursor: number) {
   const selected = catalog.courses.slice(cursor, cursor + HOMEWORK_BATCH_SIZE);
   const requests = selected.flatMap(course => [0, 1, 2].map(homeworkType => ({ course, homeworkType })));
   const pages = await mapLimited(requests, 4, async ({ course, homeworkType }) => {
-    const result = await bksyJson<{ courseNoteList?: HomeworkItem[] }>(session, `http://123.121.147.7:88/ve/back/coursePlatform/homeWork.shtml?method=getHomeWorkList&cId=${course.id}&subType=${homeworkType}&page=1&pagesize=100`);
+    const result = await bksyJson<{ courseNoteList?: HomeworkItem[] }>(session, `https://mis.bjtu.edu.cn/ve/back/coursePlatform/homeWork.shtml?method=getHomeWorkList&cId=${course.id}&subType=${homeworkType}&page=1&pagesize=100`);
     return (result.courseNoteList || []).map(item => ({
       id: `${homeworkType}-${item.id}`, homeworkType, courseName: item.course_name || course.name, title: item.title,
       endTime: item.end_time, openDate: item.open_date, subStatus: item.subStatus || "未提交", score: item.stu_score || "", pending: item.subStatus !== "已提交",
