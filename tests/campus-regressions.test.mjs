@@ -95,12 +95,12 @@ test("MIS final timetable provides the whole selected term", () => {
   const html = `<table>
     <tr><th>节次</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
     <tr><td>第一节</td>
-      <td><a>M301001B [01]<br>无线通信基础 [本]<div style="max-width:160px">第1-16周 <i>陈霞</i></div><span class="text-muted">海淀西校区, 思源东楼, SD205</span></a></td>
+      <td><a>M301001B [01]<br>无线通信基础 [本]<div style="max-width:160px">第1-16周 <i>示例教师甲</i></div><span class="text-muted">海淀西校区, 思源东楼, SD205</span></a></td>
       <td></td><td></td><td></td><td></td><td></td><td></td>
     </tr><tr><td>第二节</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     <tr><td>第三节</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
     <tr><td>第四节</td>
-      <td><a>M301002B [02]<br>网络内容安全 [本]<div style="max-width:160px">第1-15周 单 <i>熊菲</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></a></td>
+      <td><a>M301002B [02]<br>网络内容安全 [本]<div style="max-width:160px">第1-15周 单 <i>示例教师乙</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></a></td>
       <td></td><td></td><td></td><td></td><td></td><td></td>
     </tr>
   </table>`;
@@ -109,7 +109,7 @@ test("MIS final timetable provides the whole selected term", () => {
   assert.equal(courses.length, 2);
   assert.deepEqual(courses.map(course => course.period), [1, 3]);
   assert.equal(courses[0].courseName, "无线通信基础");
-  assert.equal(courses[0].teacher, "陈霞");
+  assert.equal(courses[0].teacher, "示例教师甲");
   assert.equal(courses[0].classroom, "思源东楼 SD205");
   assert.ok(isCourseActive(courses[0], 16));
   assert.ok(isCourseActive(courses[1], 15));
@@ -118,7 +118,7 @@ test("MIS final timetable provides the whole selected term", () => {
 
 test("MIS timetable rows are periods and columns are weekdays like the friend app", () => {
   const blank = "<td></td>";
-  const course = `<td><a>M301118B [02]<br><span>通信原理</span><div style="max-width:160px">第1-16周 <i>陈一帅</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></a></td>`;
+  const course = `<td><a>M301118B [02]<br><span>通信原理</span><div style="max-width:160px">第1-16周 <i>示例教师甲</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></a></td>`;
   const html = `<table><tr><th>节次</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
     <tr><td>1</td>${blank.repeat(7)}</tr><tr><td>2</td>${blank.repeat(7)}</tr><tr><td>3</td>${blank.repeat(7)}</tr>
     <tr><td>4</td>${blank}${course}${blank.repeat(5)}</tr><tr><td>5</td>${blank.repeat(7)}</tr></table>`;
@@ -133,13 +133,13 @@ test("MIS timetable parses every sibling course block in the same time slot", ()
   const blank = "<td></td>";
   const html = `<table><tr><th>节次</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr>
     <tr><td>1</td><td>
-      <div>M401147B [04]<br><span>信息论基础(B) [本]</span><br><div style="max-width:120px;">第01-08周 <i>宋政育</i></div><span class="text-muted">海淀西校区, 思源楼, SY206</span></div>
-      <div style="margin-top:8px;">M401124B [01]<br><span>网络内容安全 [本]</span><br><div style="max-width:120px;">第09-16周 <i>熊菲</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></div>
+      <div>M401147B [04]<br><span>信息论基础(B) [本]</span><br><div style="max-width:120px;">第01-08周 <i>示例教师甲</i></div><span class="text-muted">海淀西校区, 思源楼, SY206</span></div>
+      <div style="margin-top:8px;">M401124B [01]<br><span>网络内容安全 [本]</span><br><div style="max-width:120px;">第09-16周 <i>示例教师乙</i></div><span class="text-muted">海淀西校区, 思源楼, SY309</span></div>
     </td>${blank.repeat(6)}</tr></table>`;
   const parsed = parseAaSchedule(html);
   assert.deepEqual(parsed.map(course => [course.courseName, course.teacher, course.weekText]), [
-    ["信息论基础(B)", "宋政育", "1-8周"],
-    ["网络内容安全", "熊菲", "9-16周"],
+    ["信息论基础(B)", "示例教师甲", "1-8周"],
+    ["网络内容安全", "示例教师乙", "9-16周"],
   ]);
 });
 

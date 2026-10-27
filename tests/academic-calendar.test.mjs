@@ -5,12 +5,12 @@ import * as campus from '../shared/campus.ts';
 test('current AA timetable preserves four occurrences and stops eight-week courses after week eight', () => {
  const blank='<td></td>';
  const cell=(name,teacher,room)=>`<td><div>M401000B [02]<br><span>${name} [本]</span><br><div style="max-width:120px;">第01-08周 <i>${teacher}</i></div><span class="text-muted">海淀西校区, ${room}</span></div></td>`;
- const ai=cell('人工智能的网络应用','陈一帅','逸夫教学楼, YF508');
- const fpga=cell('FPGA课程设计','高海林','第九教学楼, 南413西');
+ const ai=cell('人工智能的网络应用','示例教师甲','逸夫教学楼, YF508');
+ const fpga=cell('FPGA课程设计','示例教师乙','第九教学楼, 南413西');
  const html=`<table><tr><th>节次</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th><th>日</th></tr><tr><td>第1节 [08:00-09:50]</td>${blank.repeat(2)}${ai}${blank}${fpga}${blank.repeat(2)}</tr><tr><td>第2节 [10:10-12:00]</td>${ai}${fpga}${blank.repeat(5)}</tr></table>`;
  const courses=campus.parseAaSchedule(html);
  assert.deepEqual(courses.map(c=>[c.day,c.period,c.courseName]),[[3,1,'人工智能的网络应用'],[5,1,'FPGA课程设计'],[1,2,'人工智能的网络应用'],[2,2,'FPGA课程设计']]);
- assert.equal(courses[0].teacher,'陈一帅');
+ assert.equal(courses[0].teacher,'示例教师甲');
  assert.equal(courses[1].classroom,'第九教学楼 南413西');
  assert.equal(courses.filter(c=>campus.isCourseActive(c,2)).length,4);
  assert.equal(courses.filter(c=>campus.isCourseActive(c,8)).length,4);

@@ -13,6 +13,12 @@ Checked on 2026-10-26. Maintainer: [Zafiro-0](https://github.com/Zafiro-0).
 
 No live student account was used in this review. Real data parity, iPhone session retention, cross-user isolation and a 20-concurrent/50-user capacity target have not been accepted. Do not present those targets as measured adoption or verified capacity.
 
+## Dependency and publication review
+
+On 2026-10-26, `npm audit` against the committed lockfile reported four affected packages: `next` (critical), and `postcss`, `sharp`, `source-map-js` (high). In particular, Next.js 15.5.25 is within the range of [GHSA-2464-fhr4-w9xw](https://github.com/advisories/GHSA-2464-fhr4-w9xw); that advisory lists 15.5.28 as patched. Exploitability depends on configuration and code paths; no exploitation or live security testing was performed. Resolve and re-audit the dependency graph before treating this project as ready for wider use.
+
+A bounded pattern check of text blobs reachable from the then-public branches, tags and pull-request heads found no matching API tokens/private keys, real environment files, personal email addresses in file bodies, or private workspace paths. Commit emails in that scope used GitHub no-reply addresses. This does not cover every secret format, platform logs, inaccessible/deleted objects, or data inside model weights; it is not a privacy guarantee. Current timetable fixtures use placeholder teacher names; earlier commits retain their original examples.
+
 ## Priorities
 
 1. Re-establish campus authentication and academic endpoints using an authorized session and redacted fixtures. Endpoint replacements must follow observed requests rather than a search-and-replace of hostnames.
